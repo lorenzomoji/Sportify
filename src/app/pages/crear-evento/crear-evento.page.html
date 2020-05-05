@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Crear Evento</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="dark">
+  <br>
+  <form [formGroup]="evento" (ngSubmit)="logForm()">
+    <ion-item>
+      <ion-label>Elige una fecha</ion-label>
+      <input matInput [matDatepicker]="picker" type="text" formControlName="fecha">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </ion-item>
+    <ion-item>
+      <ion-label>Hora</ion-label>
+      <ion-textarea formControlName="hora"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label>Lugar</ion-label>
+      <ion-textarea formControlName="lugar"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label>Participantes</ion-label>
+      <ion-textarea formControlName="participantes"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label>Nivel</ion-label>
+      <ion-textarea formControlName="nivel"></ion-textarea>
+    </ion-item>
+    <ion-button ion-button type="submit" [disabled]="!evento.valid">Submit</ion-button>
+  </form>
+</ion-content>
