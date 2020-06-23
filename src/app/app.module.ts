@@ -13,6 +13,7 @@ import { MaterialModule } from './material.module';
 import { AngularFireModule } from '@angular/fire'
 import { AngularFireAuthModule } from '@angular/fire/auth'
 import { environment } from './../environments/environment'
+import { AngularFirestore } from '@angular/fire/firestore';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { environment } from './../environments/environment'
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    AngularFirestore
   ],
   bootstrap: [AppComponent]
 })

@@ -1,40 +1,43 @@
 <ion-header [translucent]="true">
-  <ion-toolbar color="dark">
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-    <ion-title>Crear Evento</ion-title>
-  </ion-toolbar>
+    <ion-toolbar color="dark">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Crear Evento</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content color="dark">
-  <br>
-  <form [formGroup]="evento" (ngSubmit)="logForm()">
-    <ion-item>
-      <ion-label>Elige una fecha</ion-label>
-      <input [matDatepicker]="picker" formControlName="fecha">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </ion-item>
-    <ion-item>
-      <ion-label>Hora</ion-label>
-      <ion-datetime display-format="h:mm A" picker-format="h:mm A" formControlName="hora"></ion-datetime>
-    </ion-item>
-    <ion-item>
-      <ion-label>Lugar</ion-label>
-      <ion-textarea formControlName="lugar"></ion-textarea>
-    </ion-item>
-    <ion-item>
-      <ion-label>Participantes</ion-label>
-      <ion-button size="large" (click)="participantesPicker()">
-        Participantes
-    </ion-button>
-      <ion-textarea formControlName="participantes"></ion-textarea>
-    </ion-item>
-    <ion-item>
-      <ion-label>Nivel</ion-label>
-      <ion-textarea formControlName="nivel"></ion-textarea>
-    </ion-item>
-    <ion-button ion-button type="submit" [disabled]="!evento.valid">Submit</ion-button>
-  </form>
+    <br>
+    <form [formGroup]="eventoForm" (ngSubmit)="crearEvento(eventoForm.value)">
+        <ion-item>
+            <input type="hidden" formControlName="id">
+
+            <ion-label for="fecha">Elige una fecha</ion-label>
+            <input [matDatepicker]="picker" formControlName="fecha">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </ion-item>
+        <ion-item>
+            <ion-label for="hora">Hora</ion-label>
+            <ion-datetime display-format="h:mm A" picker-format="h:mm A" formControlName="hora"></ion-datetime>
+        </ion-item>
+        <ion-item>
+            <ion-label for="lugar">Lugar</ion-label>
+            <ion-textarea formControlName="lugar"></ion-textarea>
+        </ion-item>
+        <ion-item>
+            <ion-label for="participantes">Participantes</ion-label>
+            <!-- <ion-button size="large" (click)="participantesPicker()">
+                Participantes
+            </ion-button> -->
+            <ion-textarea formControlName="participantes"></ion-textarea>
+        </ion-item>
+        <ion-item>
+            <ion-label for="nivel">Nivel</ion-label>
+            <ion-textarea formControlName="nivel"></ion-textarea>
+        </ion-item>
+        <input type="submit" class="btn--blue btn--add" [disabled]="!eventoForm.valid" value="Agregar">
+    </form>
+    <button (click)="crearEvento()">Crear evento</button>
 </ion-content>
