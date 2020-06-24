@@ -17,3 +17,13 @@ export class Deportes {
 
     }
 }
+
+export class Evento {
+
+    id: number;
+    deporte: string;
+    lugar: string;
+    hora: string;
+    participantes: number;
+    nivel: number;
+}
