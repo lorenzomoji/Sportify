@@ -23,6 +23,7 @@ export class DeportesComponent {
 
   //Se pondra el id del deporte para que la busqueda solo sea por ese deporte en concreto
   deporteSeleccionado(deporte) {
+    sessionStorage.setItem('deporte', JSON.stringify(deporte));
     this.router.navigateByUrl('/tabs/deportes/deporte-seleccionado');
   }
 
