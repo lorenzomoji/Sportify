@@ -4,6 +4,7 @@ import { PickerController } from '@ionic/angular';
 import { PickerOptions } from "@ionic/core";
 import { EventosService } from '../../services/eventos.service';
 import { Evento } from '../../models/evento.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-crear-evento',
@@ -14,8 +15,10 @@ export class CrearEventoPage implements OnInit {
 
   numbers: number[] = [1, 2, 3, 4, 5, 6, 7, 8];
   participantes: number;
+  deporte: string;
   eventos = [];
   public eventoForm = new FormGroup({
+    deporte: new FormControl(''),
     fecha: new FormControl('', Validators.required),
     hora: new FormControl('', Validators.required),
     lugar: new FormControl('', Validators.required),
@@ -27,10 +30,12 @@ export class CrearEventoPage implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private pickerController: PickerController,
-    private eventoService: EventosService
+    private eventoService: EventosService,
+    private router: Router
   ) {
     this.eventoForm.setValue({
       id: '',
+      deporte: '',
       fecha: ['', Validators.required],
       hora: [''],
       lugar: [''],
@@ -40,23 +45,7 @@ export class CrearEventoPage implements OnInit {
    }
 
   ngOnInit() {
-    // this.eventoService.getEvents().subscribe((
-    //   results => {
-    //     this.eventos = [];
-    //     results.forEach((element) => {
-    //       this.eventos.push({
-    //         id: element.payload.doc.id,
-    //         data: element.payload.doc.data()
-    //       });
-    //     });
-    //     console.log('Eventos: ', this.eventos);
-    //   }
-    // ));
-    this.eventoService.getEvents().subscribe((
-      results => {
-        console.log('Results: ', results);
-      }
-    ));
+    this.deporte = JSON.parse(sessionStorage.getItem('deporte'));
   }
 
   async participantesPicker() {
@@ -95,16 +84,17 @@ export class CrearEventoPage implements OnInit {
 
   crearEvento(form) {
     let data = {
+      deporte: this.deporte,
       fecha: form.fecha,
       hora: form.hora,
       lugar: form.lugar,
       participantes: form.participantes,
       nivel: form.nivel
     };
-    console.log('Data: ', data);
     this.eventoService.createEvent(data).then(() => {
       console.log('Evento creado exitosamente');
       this.eventoForm.setValue({
+        deporte: '',
         fecha: '',
         hora: '',
         lugar: '',
@@ -115,6 +105,12 @@ export class CrearEventoPage implements OnInit {
     }, (error) => {
       console.log('Error: ', error);
     });
+    this.router.navigateByUrl('/tabs/deportes');
+  }
+
+  ngOnDestroy(): void {
+    sessionStorage.removeItem('deporte');
+    sessionStorage.clear();
   }
 
 }
