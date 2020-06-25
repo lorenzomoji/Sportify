@@ -24,6 +24,7 @@ export class CrearEventoPage implements OnInit {
     lugar: new FormControl('', Validators.required),
     nivel: new FormControl(null, Validators.required),
     participantes: new FormControl(null, Validators.required),
+    participantesIn: new FormControl([]),
     id: new FormControl('')
   });
 
@@ -40,6 +41,7 @@ export class CrearEventoPage implements OnInit {
       hora: [''],
       lugar: [''],
       participantes: [''],
+      participantesIn: [],
       nivel: ['']
     });
    }
@@ -89,6 +91,7 @@ export class CrearEventoPage implements OnInit {
       hora: form.hora,
       lugar: form.lugar,
       participantes: form.participantes,
+      participantesIn: [],
       nivel: form.nivel
     };
     this.eventoService.createEvent(data).then(() => {
@@ -100,6 +103,7 @@ export class CrearEventoPage implements OnInit {
         lugar: '',
         nivel: 0,
         participantes: 0,
+        participantesIn: [],
         id: ''
       });
     }, (error) => {

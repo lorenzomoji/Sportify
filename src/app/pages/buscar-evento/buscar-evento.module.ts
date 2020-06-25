@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, AlertController } from '@ionic/angular';
 
 import { BuscarEventoPageRoutingModule } from './buscar-evento-routing.module';
 
@@ -15,6 +15,9 @@ import { BuscarEventoPage } from './buscar-evento.page';
     IonicModule,
     BuscarEventoPageRoutingModule
   ],
-  declarations: [BuscarEventoPage]
+  declarations: [BuscarEventoPage],
+  providers: [
+    AlertController
+  ]
 })
 export class BuscarEventoPageModule {}

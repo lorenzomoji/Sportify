@@ -17,10 +17,11 @@ export class AuthService {
 
   //Login
   async onLogin(user: User) {
+    this.getUid();
     try {
       return await this.angularFireAuth.signInWithEmailAndPassword(user.email, user.password);
     } catch (error) {
-      console.log('Error en login user', error)
+      console.log('Error en login user', error);
     }
   }
 
@@ -28,10 +29,16 @@ export class AuthService {
   async onRegister(user: User) {
     console.log('User: ', user);
     try {
-      return await this.angularFireAuth.createUserWithEmailAndPassword(user.email, user.password)
+      return await this.angularFireAuth.createUserWithEmailAndPassword(user.email, user.password);
     } catch (error) {
-      console.log('Error on register user', error)
+      console.log('Error on register user', error);
     }
+  }
+
+  public getUid() {
+    console.log('FireAuth: ', this.angularFireAuth.authState.subscribe(result => {
+      sessionStorage.setItem('uid', result.uid);
+    }));
   }
 
 }

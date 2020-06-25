@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Evento } from '../models/evento.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ export class EventosService {
   private firestoreCollection: AngularFirestoreCollection<any>;
 
   constructor(
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    private authService: AuthService
   ) {
     this.firestoreCollection = firestore.collection<any>('eventos');
     this.eventos = this.firestoreCollection.snapshotChanges().pipe(map(
@@ -38,6 +40,17 @@ export class EventosService {
 
   public getEventById(eventoId: string) {
     return this.firestore.collection('eventos').doc(eventoId).snapshotChanges();
+  }
+
+  public updateEvent(evento: any) {
+    let userUid = sessionStorage.getItem('uid');
+    console.log('User uid: ', userUid);
+    console.log('Evento: ', evento);
+    return this.firestoreCollection.doc(userUid).update(evento);
+  }
+
+  public removeEvent() {
+    return this.firestore;
   }
 
 

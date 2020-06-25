@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Deporte } from 'src/app/models/deportes.model';
 
 @Component({
   selector: 'app-deporte-seleccionado',
@@ -8,9 +9,12 @@ import { Router } from '@angular/router';
 })
 export class DeporteSeleccionadoPage implements OnInit {
 
+  deporte: Deporte;
+
   constructor(private router: Router) { }
 
   ngOnInit() {
+    this.deporte = JSON.parse(sessionStorage.getItem('deporte'));
   }
 
   buscarEvento() {
