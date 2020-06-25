@@ -5,4 +5,5 @@ export class Evento {
     public lugar: string;
     public participantes: number;
     public nivel: number;
+    public idUsuario: number[];
 }
