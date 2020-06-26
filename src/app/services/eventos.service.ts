@@ -49,9 +49,9 @@ export class EventosService {
     return this.firestoreCollection.doc(userUid).update(evento);
   }
 
-  public removeEvent() {
-    return this.firestore;
-  }
+  // public removeEvent() {
+  //   return this.firestore;
+  // }
 
 
 }
