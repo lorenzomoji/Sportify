@@ -5,20 +5,22 @@
 </ion-header>
 
 <ion-content color="dark" padding>
-  <ion-item>
-    <ion-label>
-      Email
-    </ion-label>
-    <ion-input type="text" [(ngModel)]="user.email"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label>
-      Password
-    </ion-label>
-    <ion-input type="password" [(ngModel)]="user.password"></ion-input>
-  </ion-item>
-  <ion-item-divider>
-    <ion-button size="large" (click)="onRegister()">Register</ion-button>
-    <ion-button size="large" href="/login">Login</ion-button>
-  </ion-item-divider>
+  <form [formGroup]="userForm" (ngSubmit)="onRegister(userForm.value)">
+    <ion-item>
+      <ion-label for="email">
+        Email
+      </ion-label>
+      <ion-input type="text" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label for="password">
+        Password
+      </ion-label>
+      <ion-input type="password" formControlName="password"></ion-input>
+    </ion-item>
+    <ion-item-divider>
+      <input size="large" type="submit" class="btn--blue btn--add" [disabled]="!userForm.valid" value="Register">
+      <ion-button size="large" href="/login">Login</ion-button>
+    </ion-item-divider>
+  </form>
 </ion-content>

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth'
 import { User } from './../models/user.model'
+import { pipe } from 'rxjs';
+import { element } from 'protractor';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +21,7 @@ export class AuthService {
   async onLogin(user: User) {
     this.getUid();
     try {
+      this.angularFireAuth.authState.subscribe(element => JSON.stringify(sessionStorage.setItem('email', element.email)))
       return await this.angularFireAuth.signInWithEmailAndPassword(user.email, user.password);
     } catch (error) {
       console.log('Error en login user', error);
