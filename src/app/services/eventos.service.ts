@@ -44,8 +44,6 @@ export class EventosService {
 
   public updateEvent(evento: any) {
     let userUid = sessionStorage.getItem('uid');
-    console.log('User uid: ', userUid);
-    console.log('Evento: ', evento);
     return this.firestoreCollection.doc(userUid).update(evento);
   }
 
