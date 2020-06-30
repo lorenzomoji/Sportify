@@ -13,6 +13,7 @@ export class DeportesComponent {
   {id: 6, nombre: 'Voleyball'}, {id: 7, nombre: 'Rugby'}, {id: 8, nombre: 'Badminton'}, {id: 9, nombre: 'Padel'}, {id: 10, nombre: 'Surf'},
   {id: 11, nombre: 'Skate'}, {id: 12, nombre: 'Tenis de mesa'}, {id: 13, nombre: 'Running'}, {id: 14, nombre: 'Gimnasio'},
   {id: 15, nombre: 'Parkour'}, {id: 16, nombre: 'Escalada'}];
+  textoBuscar = '';
 
   constructor(private router: Router) {
     
@@ -25,6 +26,10 @@ export class DeportesComponent {
   deporteSeleccionado(deporte) {
     sessionStorage.setItem('deporte', JSON.stringify(deporte));
     this.router.navigateByUrl('/tabs/deportes/deporte-seleccionado');
+  }
+
+  buscar(event) {
+    this.textoBuscar = event.detail.value;
   }
 
 }

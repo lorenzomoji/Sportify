@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { DeportesComponent } from './deportes.page';
 
 import { DeportesRoutingModule } from './deportes-routing.module';
+import { PipesModule } from '../../pipes/pipes.module';
 
 @NgModule({
   imports: [
@@ -12,6 +13,7 @@ import { DeportesRoutingModule } from './deportes-routing.module';
     CommonModule,
     FormsModule,
     DeportesRoutingModule,
+    PipesModule
   ],
   declarations: [
     DeportesComponent

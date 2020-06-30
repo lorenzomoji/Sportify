@@ -1,26 +1,17 @@
-<ion-header>
-  <ion-toolbar color="dark">
-    <ion-title>Register</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content color="dark" padding>
-  <form [formGroup]="userForm" (ngSubmit)="onRegister(userForm.value)">
-    <ion-item>
-      <ion-label for="email">
-        Email
-      </ion-label>
-      <ion-input type="text" formControlName="email"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label for="password">
-        Password
-      </ion-label>
-      <ion-input type="password" formControlName="password"></ion-input>
-    </ion-item>
-    <ion-item-divider>
-      <input size="large" type="submit" class="btn--blue btn--add" [disabled]="!userForm.valid" value="Register">
-      <ion-button size="large" href="/login">Login</ion-button>
-    </ion-item-divider>
-  </form>
+    <img src="../../../assets/baseline_directions_run_black_48dp.png" class="icono">
+    <h6 class="sportify">Sportify</h6>
+    <form [formGroup]="userForm" (ngSubmit)="onRegister(userForm.value)">
+        <div class="inputs">
+            <input type="text" formControlName="nombre" placeholder="Nombre">
+            <input type="text" formControlName="apellido" placeholder="Apellido">
+            <input type="text" formControlName="lugar" placeholder="Lugar de residencia">
+            <input class="inputEmail" type="text" formControlName="email" placeholder="Email">
+            <input class="inputPass" type="password" formControlName="password" placeholder="Password">
+        </div>
+        <div class="botones">
+            <ion-button class="registerButton" expand="block" type="submit" [disabled]="!userForm.valid" color="dark">Registrarse</ion-button>
+            <ion-button class="loginButton" expand="block" href="/login" color="dark">Login</ion-button>
+        </div>
+    </form>
 </ion-content>

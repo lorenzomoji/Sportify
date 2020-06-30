@@ -14,6 +14,7 @@ import { AngularFireModule } from '@angular/fire'
 import { AngularFireAuthModule } from '@angular/fire/auth'
 import { environment } from './../environments/environment'
 import { AngularFirestore } from '@angular/fire/firestore';
+import { PipesModule } from './pipes/pipes.module';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
     BrowserAnimationsModule,
     MaterialModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    PipesModule
   ],
   providers: [
     StatusBar,

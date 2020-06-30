@@ -1,15 +1,16 @@
 <ion-header [translucent]="true">
-  <ion-toolbar color="dark">
-    <ion-title>
-      DEPORTES
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar color="dark">
+        <ion-title>
+            DEPORTES
+        </ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content color="dark">
-  <ion-list>
-    <ion-item *ngFor="let deporte of deportes" color="dark" detail>
-      <ion-label (click)="deporteSeleccionado(deporte)">{{deporte.nombre}}</ion-label>
-    </ion-item>
-  </ion-list>
+    <ion-searchbar color="light" (ionChange)="buscar($event)"></ion-searchbar>
+    <ion-list>
+        <ion-item *ngFor="let deporte of deportes | filtro: textoBuscar" color="dark" detail>
+            <ion-label (click)="deporteSeleccionado(deporte)">{{deporte.nombre}}</ion-label>
+        </ion-item>
+    </ion-list>
 </ion-content>

@@ -13,10 +13,12 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class RegisterPage implements OnInit {
 
   userForm = new FormGroup({
+    nombre: new FormControl('', Validators.required),
+    apellido: new FormControl('', Validators.required),
+    lugar: new FormControl(Validators.required),
     email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
-    eventos: new FormControl([])
-  })
+  });
 
   constructor(
     private route: Router,
@@ -24,9 +26,11 @@ export class RegisterPage implements OnInit {
     private userService: UsuariosService
   ) {
     this.userForm.setValue({
+      nombre: '',
+      apellido: '',
+      lugar: '',
       email: '',
-      password: '',
-      eventos: []
+      password: ''
     });
   }
 

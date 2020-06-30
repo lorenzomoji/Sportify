@@ -1,17 +1,15 @@
-<!--  -->
-
 <ion-content color="dark" padding>
-  <img src="../../../assets/baseline_directions_run_black_48dp.png" class="icono">
-  <h6 class="sportify">Sportify</h6>
-  <form [formGroup]="userForm" (ngSubmit)="onLogin(userForm.value)">
-    <div class="inputs">
-      <input class="inputEmail" type="text" formControlName="email" placeholder="Email">
-      <input class="inputPass" type="password" formControlName="password" placeholder="Password">
-    </div>
-    <!-- <input size="large" type="submit" class="btn--blue btn--add login" [disabled]="!userForm.valid" value="Login"> -->
-    <div class="botones">
-      <ion-button class="loginButton" expand="block" type="submit" [disabled]="!userForm.valid" color="dark">Login</ion-button>
-      <ion-button class="registerButton" expand="block" href="/register" color="dark">Register</ion-button>
-    </div>
+    <img src="../../../assets/baseline_directions_run_black_48dp.png" class="icono">
+    <h6 class="sportify">Sportify</h6>
+    <form [formGroup]="userForm" (ngSubmit)="onLogin(userForm.value)">
+        <div class="inputs">
+            <input class="inputEmail" type="text" formControlName="email" placeholder="Email">
+            <input class="inputPass" type="password" formControlName="password" placeholder="Password">
+        </div>
+        <!-- <input size="large" type="submit" class="btn--blue btn--add login" [disabled]="!userForm.valid" value="Login"> -->
+        <div class="botones">
+            <ion-button class="loginButton" expand="block" type="submit" [disabled]="!userForm.valid" color="dark">Login</ion-button>
+            <ion-button class="registerButton" expand="block" href="/register" color="dark">Register</ion-button>
+        </div>
     </form>
 </ion-content>
