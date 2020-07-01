@@ -16,7 +16,6 @@ export class DeportesComponent {
   textoBuscar = '';
 
   constructor(private router: Router) {
-    
   }
 
   ngOnInit() {

@@ -1,5 +1,7 @@
 {
   "name": "Sportify",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

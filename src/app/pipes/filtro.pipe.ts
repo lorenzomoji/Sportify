@@ -6,8 +6,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FiltroPipe implements PipeTransform {
 
   transform(value: any[], text: string): any {
-    console.log('Value: ', value);
-    console.log('Text: ', text);
 
     text = text.toLowerCase();
 

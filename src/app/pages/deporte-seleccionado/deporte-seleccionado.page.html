@@ -9,9 +9,27 @@
 
 <ion-content color="dark">
 
-    <section style="display: flex; justify-content: center; margin-top: 50%;">
-        <ion-button expand="block" size="large" style="margin-right: 1%;" (click)="crearEvento()">Crear Evento</ion-button>
-        <ion-button expand="block" size="large" style="margin-left: 1%;" (click)="buscarEvento()">Buscar Evento</ion-button>
-    </section>
+    <ion-card>
+        <ion-card-header>
+            <ion-card-title>Crea un evento</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            Crea un evento para que los usuarios puedan unirse y así conocer a más gente y disfrutar del deporte
+        </ion-card-content>
+        <ion-card-content>
+            <ion-button expand="block" color="dark" (click)="crearEvento()">CREAR EVENTO</ion-button>
+        </ion-card-content>
+    </ion-card>
+    <ion-card>
+        <ion-card-header>
+            <ion-card-title>Busca un evento</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            Busca un evento que se amolde a tus preferencias, conoce a los diferentes usuarios de esta plataforma y practica este deporte
+        </ion-card-content>
+        <ion-card-content>
+            <ion-button expand="block" color="dark" (click)="buscarEvento()">BUSCAR EVENTO</ion-button>
+        </ion-card-content>
+    </ion-card>
 
 </ion-content>
