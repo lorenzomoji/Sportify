@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -17,7 +17,8 @@ import { BuscarEventoPage } from './buscar-evento.page';
   ],
   declarations: [BuscarEventoPage],
   providers: [
-    AlertController
+    AlertController,
+    { provide: LOCALE_ID, useValue: 'es' }
   ]
 })
 export class BuscarEventoPageModule {}

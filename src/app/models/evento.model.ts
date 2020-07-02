@@ -8,7 +8,7 @@ export class Evento {
     public hora: string;
     public lugar: string;
     public participantes: number;
-    public nivel: number;
+    public nivel: any;
     public participantesIn: string[];
     public idUsuario: number[];
 }

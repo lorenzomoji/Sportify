@@ -8,6 +8,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-buscar-evento',
@@ -19,6 +20,7 @@ export class BuscarEventoPage implements OnInit {
   eventos: any[];
   deporte: Deporte;
   usuario: User;
+  cantidadEventos: number;
 
   constructor(
     private eventoService: EventosService,
@@ -43,9 +45,12 @@ export class BuscarEventoPage implements OnInit {
       element => {
         element.forEach(evento => {
           if (this.deporte.nombre === evento.deporte.nombre) {
-            this.eventos.push(evento);
+            if (this.cantidadEventos === undefined) {
+              this.eventos.push(evento);
+            }
           }
         });
+        this.cantidadEventos = this.eventos.length;
       });
     console.log('Eventos: ', this.eventos);
   }
@@ -70,13 +75,34 @@ export class BuscarEventoPage implements OnInit {
           text: 'Cancelar',
           role: 'cancelar',
           handler: (result) => {
-            console.log('Result: ', result);
           }
         }]
     });
     (await alert).present();
     let result = (await alert).onDidDismiss();
-    console.log('Result: ', result);
+  }
+
+  ordenarEventos(orden) {
+    switch (orden) {
+      case 'fecha':
+        this.eventos.sort(function(a, b) {
+          let fechaA = a.fecha.substr(6,4) + a.fecha.substr(3, 2) + a.fecha.substr(0, 2);
+          let fechaB = b.fecha.substr(6, 4) + b.fecha.substr(3, 2) + b.fecha.substr(0,2);
+          return Number(fechaA) - Number(fechaB);
+        });
+        break;
+      case 'hora':
+        this.eventos.sort(function(a, b) {
+          let horaA = a.hora.substr(0, 2) + a.hora.substr(3, 2)
+          let horaB = b.hora.substr(0, 2) + b.hora.substr(3, 2)
+          return horaA - horaB;
+        });
+        break;
+      case 'nivel':
+        this.eventos.sort(function(a, b) {
+          return a.nivel.id - b.nivel.id; 
+        })
+    }
   }
 
 }

@@ -19,3 +19,55 @@
 .mat-form-field-infix {
     background-color: #EBEBEB;
 }
+
+input {
+    height: 35px;
+    width: 250px;
+    border-radius: 5px;
+    color: black;
+    text-align: center;
+}
+
+ion-input {
+    height: 35px;
+    width: 50px;
+    border: solid 2px;
+    border-radius: 5px;
+    border-color: white;
+    background-color: white;
+    color: black;
+    --placeholder-color: grey;
+    text-align: center;
+}
+
+ion-datetime {
+    height: 35px;
+    width: 250px;
+    border: solid 2px;
+    border-radius: 5px;
+    border-color: white;
+    background-color: white;
+    color: black;
+    text-align: center;
+}
+
+.datetime-placeholder {
+    color: grey;
+    text-align: center;
+}
+
+mat-datepicker {
+    color: #27D58F;
+}
+
+mat-datepicker-toggle {
+    color: #27D58F;
+}
+
+#submit {
+    margin-top: 50px;
+    margin-left: 20px;
+    background-color: #27D58F;
+}
+
+

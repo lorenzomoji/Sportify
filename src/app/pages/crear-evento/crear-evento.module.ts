@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { CrearEventoPageRoutingModule } from './crear-evento-routing.module';
 import { CrearEventoPage } from './crear-evento.page';
 import { MaterialModule } from 'src/app/material.module';
+import { MAT_DATE_LOCALE } from '@angular/material';
 
 
 @NgModule({
@@ -16,6 +17,9 @@ import { MaterialModule } from 'src/app/material.module';
     ReactiveFormsModule,
     MaterialModule
   ],
-  declarations: [CrearEventoPage]
+  declarations: [CrearEventoPage],
+  providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'es'}
+  ]
 })
 export class CrearEventoPageModule {}

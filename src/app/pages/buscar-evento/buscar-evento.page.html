@@ -10,20 +10,15 @@
 <ion-content color="dark">
     <br>
     <section style="text-align: center;">
+        Filtrar por: 
         <ion-chip outline color="success">
-            <ion-label>Hora</ion-label>
+            <ion-label (click)="ordenarEventos('fecha')">Fecha</ion-label>
         </ion-chip>
         <ion-chip outline color="success">
-            <ion-label>Nivel</ion-label>
+            <ion-label (click)="ordenarEventos('hora')">Hora</ion-label>
         </ion-chip>
         <ion-chip outline color="success">
-            <ion-label>Participantes</ion-label>
-        </ion-chip>
-        <ion-chip outline color="success">
-            <ion-label>Lugar</ion-label>
-        </ion-chip>
-        <ion-chip outline color="success">
-            <ion-label>Lugar</ion-label>
+            <ion-label (click)="ordenarEventos('nivel')">Nivel</ion-label>
         </ion-chip>
     </section>
     <hr color="white">
@@ -36,7 +31,10 @@
                             {{evento.lugar}}
                         </ion-col>
                         <ion-col>
-                            {{evento.participantes}} pax
+                            {{evento.fecha}}
+                        </ion-col>
+                        <ion-col>
+                            {{evento.participantesIn.length}} | {{evento.participantes}}
                         </ion-col>
                         <ion-col></ion-col>
                         <ion-col>

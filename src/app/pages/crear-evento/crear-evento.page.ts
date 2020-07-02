@@ -3,8 +3,8 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { PickerController } from '@ionic/angular';
 import { PickerOptions } from "@ionic/core";
 import { EventosService } from '../../services/eventos.service';
-import { Evento } from '../../models/evento.model';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-crear-evento',
@@ -13,16 +13,17 @@ import { Router } from '@angular/router';
 })
 export class CrearEventoPage implements OnInit {
 
-  numbers: number[] = [1, 2, 3, 4, 5, 6, 7, 8];
+  niveles: any[] = [{id: 1, nivel: 'Casual'}, {id: 2, nivel: 'Intermedio'}, {id: 3, nivel: 'Experto'}];
   participantes: number;
   deporte: string;
   eventos = [];
+  nivel: any;
   public eventoForm = new FormGroup({
     deporte: new FormControl(''),
     fecha: new FormControl('', Validators.required),
     hora: new FormControl('', Validators.required),
     lugar: new FormControl('', Validators.required),
-    nivel: new FormControl(null, Validators.required),
+    nivel: new FormControl('', Validators.required),
     participantes: new FormControl(null, Validators.required),
     participantesIn: new FormControl([]),
     id: new FormControl('')
@@ -42,11 +43,12 @@ export class CrearEventoPage implements OnInit {
       lugar: [''],
       participantes: [''],
       participantesIn: [],
-      nivel: ['']
+      nivel: [null, Validators.required]
     });
    }
 
   ngOnInit() {
+    moment.locale('es');
     this.deporte = JSON.parse(sessionStorage.getItem('deporte'));
   }
 
@@ -60,8 +62,7 @@ export class CrearEventoPage implements OnInit {
         {
           text:'Ok',
           handler:(value:any) => {
-            this.participantes = value.numbers.value;
-            console.log('Participantes: ', this.participantes)
+            this.nivel = {id: value.numbers.value, nivel: value.numbers.text};
           }
         }
       ],
@@ -77,22 +78,22 @@ export class CrearEventoPage implements OnInit {
 
   getColumnOptions(){
     let options = [];
-    this.numbers.forEach(x => {
-      options.push({text:x,value:x});
+    this.niveles.forEach(x => {
+      options.push({text:x.nivel,value:x.id});
     });
-    console.log('Options: ', options);
     return options;
   }
 
   crearEvento(form) {
+    console.log('Form: ', form);
     let data = {
       deporte: this.deporte,
-      fecha: form.fecha,
+      fecha: moment(form.fecha).format('L'),
       hora: form.hora,
       lugar: form.lugar,
       participantes: form.participantes,
       participantesIn: [],
-      nivel: form.nivel
+      nivel: this.nivel
     };
     this.eventoService.createEvent(data).then(() => {
       console.log('Evento creado exitosamente');
@@ -101,7 +102,7 @@ export class CrearEventoPage implements OnInit {
         fecha: '',
         hora: '',
         lugar: '',
-        nivel: 0,
+        nivel: '',
         participantes: 0,
         participantesIn: [],
         id: ''
@@ -110,11 +111,6 @@ export class CrearEventoPage implements OnInit {
       console.log('Error: ', error);
     });
     this.router.navigateByUrl('/tabs/deportes');
-  }
-
-  ngOnDestroy(): void {
-    sessionStorage.removeItem('deporte');
-    sessionStorage.clear();
   }
 
 }

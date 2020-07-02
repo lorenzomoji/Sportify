@@ -43,8 +43,7 @@ export class EventosService {
   }
 
   public updateEvent(evento: any) {
-    let userUid = sessionStorage.getItem('uid');
-    return this.firestoreCollection.doc(userUid).update(evento);
+    return this.firestoreCollection.doc(evento.id).update(evento);
   }
 
   // public removeEvent() {

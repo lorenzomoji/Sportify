@@ -9,36 +9,31 @@
 
 <ion-content color="dark">
     <br>
-    <form [formGroup]="eventoForm" (ngSubmit)="crearEvento(eventoForm.value)">
-        <ion-item>
-            <input type="hidden" formControlName="id">
+    <div style="margin-left: 45px; margin-top: 50px;">
 
-            <ion-label for="fecha">Elige una fecha</ion-label>
-            <input [matDatepicker]="picker" formControlName="fecha">
+        <form [formGroup]="eventoForm" (ngSubmit)="crearEvento(eventoForm.value)">
+            <ion-item color="#4F5955">
+            <input type="hidden" formControlName="id">
+            
+            <input [matDatepicker]="picker" formControlName="fecha" placeholder="Fecha">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </ion-item>
-        <ion-item>
-            <ion-label for="hora">Hora</ion-label>
-            <ion-datetime display-format="h:mm A" picker-format="h:mm A" formControlName="hora"></ion-datetime>
+        <ion-item color="#4F5955">
+            <ion-datetime display-format="h:mm A" picker-format="h:mm A" formControlName="hora" placeholder="Hora" class="datetime"></ion-datetime>
         </ion-item>
-        <ion-item>
-            <ion-label for="lugar">Lugar</ion-label>
-            <ion-textarea formControlName="lugar"></ion-textarea>
+        <ion-item color="#4F5955">
+            <input formControlName="lugar" placeholder="Lugar">
         </ion-item>
-        <ion-item>
-            <ion-label for="participantes">Participantes</ion-label>
-            <!-- <ion-button size="large" (click)="participantesPicker()">
-                Participantes
-            </ion-button> -->
-            <ion-textarea formControlName="participantes"></ion-textarea>
+        <ion-item color="#4F5955">
+            <input type="number" formControlName="participantes" placeholder="Participantes">
         </ion-item>
-        <ion-item>
-            <ion-label for="nivel">Nivel</ion-label>
-            <ion-textarea formControlName="nivel"></ion-textarea>
+        <ion-item color="#4F5955" (click)="participantesPicker()">
+            <input value={{nivel}} formControlName="nivel" placeholder="Nivel" *ngIf="nivel === undefined">
+            <input value={{nivel.nivel}} formControlName="nivel" placeholder="Nivel" *ngIf="nivel !== undefined">
         </ion-item>
-
-
-        <input type="submit" class="btn--blue btn--add" [disabled]="!eventoForm.valid" value="Agregar">
+        
+        <input type="submit" class="btn--blue btn--add" id="submit" value="Agregar Evento">
     </form>
+</div>
 </ion-content>
