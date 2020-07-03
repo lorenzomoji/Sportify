@@ -40,8 +40,8 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'tab2',
-        loadChildren: () => import('../tab2/tab2.module').then(m => m.Tab2PageModule)
+        path: 'lista-eventos',
+        loadChildren: () => import('../lista-eventos/lista-eventos.module').then(m => m.ListaEventosPageModule)
       },
       {
         path: 'perfil',

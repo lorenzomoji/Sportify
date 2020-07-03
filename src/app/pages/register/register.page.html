@@ -3,15 +3,19 @@
     <h6 class="sportify">Sportify</h6>
     <form [formGroup]="userForm" (ngSubmit)="onRegister(userForm.value)">
         <div class="inputs">
-            <input type="text" formControlName="nombre" placeholder="Nombre">
-            <input type="text" formControlName="apellido" placeholder="Apellido">
-            <input type="text" formControlName="lugar" placeholder="Lugar de residencia">
-            <input class="inputEmail" type="text" formControlName="email" placeholder="Email">
-            <input class="inputPass" type="password" formControlName="password" placeholder="Password">
+            <input type="text" formControlName="nombre" placeholder="Nombre" class="input">
+            <input type="text" formControlName="apellido" placeholder="Apellido" class="input">
+            <input type="text" formControlName="lugar" placeholder="Lugar de residencia" class="input">
+            <ion-datetime formControlName="fechaNacimiento" displayFormat="DD MM YYYY" min="1960-01-01" placeholder="Fecha de nacimiento"></ion-datetime>
+            <ion-select placeholder="Deporte favorito" formControlName="deporteFav">
+                <ion-select-option value={{deporte.nombre}} *ngFor="let deporte of deportes.deportes">{{deporte.nombre}}</ion-select-option>
+            </ion-select>
+            <input class="inputEmail" type="text" formControlName="email" placeholder="Email" class="input">
+            <input class="inputPass" type="password" formControlName="password" placeholder="Password" class="input">
         </div>
         <div class="botones">
             <ion-button class="registerButton" expand="block" type="submit" [disabled]="!userForm.valid" color="dark">Registrarse</ion-button>
-            <ion-button class="loginButton" expand="block" href="/login" color="dark">Login</ion-button>
+            <ion-button class="loginButton" expand="block" href="/login" color="dark">Ya tengo cuenta</ion-button>
         </div>
     </form>
 </ion-content>

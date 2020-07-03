@@ -1,42 +1,36 @@
 import { Component } from '@angular/core';
 import { UsuariosService } from 'src/app/services/usuarios.service';
+import { User } from 'src/app/models/user.model';
 import { Evento } from 'src/app/models/evento.model';
-import * as moment from 'moment';
 
 @Component({
-  selector: 'app-perfil',
-  templateUrl: 'perfil.page.html',
-  styleUrls: ['perfil.page.scss']
+  selector: 'app-lista-eventos',
+  templateUrl: 'lista-eventos.page.html',
+  styleUrls: ['lista-eventos.page.scss']
 })
-export class PerfilPage {
+export class ListaEventosPage {
 
-  user: any;
-  eventosPasados: Evento[] = [];
+  eventos: Evento[] = [];
 
   constructor(
     private userService: UsuariosService
   ) {}
 
   ngOnInit(): void {
-    moment.locale('es');
     this.userService.getUser().subscribe(
       element => {
-        this.user = element;
         element.forEach(user => {
           if (user.email === sessionStorage.getItem('email').toString()) {
-            this.user = user;
-            user.eventos.forEach(evento => {
-              let diaActualTransformado = moment(new Date()).format('L');
-              let diaActual = diaActualTransformado.substr(6, 4) + diaActualTransformado.substr(3, 2) + diaActualTransformado.substr(0, 2);
-              let diaEvento = evento.fecha.substr(6, 4) + evento.fecha.substr(3, 2) + evento.fecha.substr(0, 2);
-              if (Number(diaActual) > Number(diaEvento)) {
-                this.eventosPasados.push(evento);
-              }
-            });
+            if (user.eventos) {
+              user.eventos.forEach(evento => {
+                this.eventos.push(evento);
+              });
+            }
           }
         })
       }
     );
+    console.log('Eventos: ', this.eventos);
   }
 
   nombrarIcono(deporte) {

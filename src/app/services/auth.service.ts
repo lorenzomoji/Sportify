@@ -28,6 +28,10 @@ export class AuthService {
     }
   }
 
+  async onLogout() {
+    this.angularFireAuth.signOut();
+  }
+
   //Register
   async onRegister(user: User) {
     console.log('User: ', user);

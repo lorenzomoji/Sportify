@@ -1,0 +1,27 @@
+<ion-header [translucent]="true" color="dark">
+  <ion-toolbar>
+    <ion-title>
+      Lista de Eventos
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" color="dark" *ngIf="eventos">
+  <ion-header collapse="condense">
+    <ion-toolbar color="dark">
+      <ion-title size="large">Lista Eventos</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-list>
+    <ion-item color="dark" *ngFor="let evento of eventos">
+      <ion-avatar slot="start">
+        <ion-icon name={{nombrarIcono(evento.deporte.nombre)}}></ion-icon>
+      </ion-avatar>
+      <ion-label>
+        <h1>{{evento.deporte.nombre}}</h1>
+        <h3>{{evento.fecha}} {{evento.hora}}</h3>
+        <h3>{{evento.lugar}}</h3>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

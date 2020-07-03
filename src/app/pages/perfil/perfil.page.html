@@ -6,33 +6,37 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true"  color="dark">
+<ion-content [fullscreen]="true"  color="dark" *ngIf="user">
   <ion-header collapse="condense">
     <ion-toolbar color="dark">
-      <ion-title size="large">Perfil (Foto)</ion-title>
+      <ion-title size="large">{{user.nombre}} {{user.apellido}}</ion-title>
     </ion-toolbar>
-    <h2>Nombre + Apellidos</h2>
-    <h6>Cantidad Amigos</h6>
     <ion-list>
       <ion-item color="dark">
-        <ion-label>Fecha de nacimiento</ion-label>
+        <ion-label>Fecha de nacimiento: {{user.fechaNacimiento}}</ion-label>
       </ion-item>
       <ion-item color="dark">
-        <ion-label>Lugar de residiencia</ion-label>
+        <ion-label>Lugar de residiencia: {{user.lugar}}</ion-label>
       </ion-item>
       <ion-item color="dark">
-        <ion-label>Deportes favoritos con respectivos niveles</ion-label>
-      </ion-item>
-      <ion-item color="dark">
-        <ion-label>Disponibilidad horaria</ion-label>
+        <ion-label>Deporte favorito: {{user.deporteFav}}</ion-label>
       </ion-item>
     </ion-list>
     <br>
-    <ion-list>
-      <ion-item color="dark">
-        Lista de ultimos eventos
+    <h2>Últimos eventos actudidos</h2>
+    <ion-list *ngIf="eventosPasados.length > 0">
+      <ion-item color="dark" *ngFor="let evento of eventosPasados">
+        <ion-avatar slot="start">
+          <ion-icon name={{nombrarIcono(evento.deporte.nombre)}}></ion-icon>
+        </ion-avatar>
+        <ion-label>
+          <h1>{{evento.deporte.nombre}}</h1>
+          <h3>{{evento.fecha}} {{evento.hora}}</h3>
+          <h3>{{evento.lugar}}</h3>
+        </ion-label>
       </ion-item>
     </ion-list>
+    <h2 *ngIf="eventosPasados.length < 0">No has acudido a ningún evento</h2>
   </ion-header>
 
 </ion-content>
