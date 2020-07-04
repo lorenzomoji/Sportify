@@ -7,13 +7,15 @@ import { IonicModule, AlertController } from '@ionic/angular';
 import { BuscarEventoPageRoutingModule } from './buscar-evento-routing.module';
 
 import { BuscarEventoPage } from './buscar-evento.page';
+import { MatListModule } from '@angular/material';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    BuscarEventoPageRoutingModule
+    BuscarEventoPageRoutingModule,
+    MatListModule
   ],
   declarations: [BuscarEventoPage],
   providers: [

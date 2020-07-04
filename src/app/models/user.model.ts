@@ -7,6 +7,5 @@ export class User {
     fechaNacimiento: string;
     deporteFav: string;
     email: string;
-    password: string;
     eventos?: Evento[];
 }

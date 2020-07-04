@@ -23,8 +23,8 @@
     </section>
     <hr color="white">
     <div>
-        <ion-list>
-            <ion-item *ngFor="let evento of eventos;let i = index" color="dark">
+        <mat-list>
+            <mat-list-item *ngFor="let evento of eventos;let i = index" color="dark">
                 <ion-grid>
                     <ion-row>
                         <ion-col>
@@ -40,11 +40,11 @@
                             {{evento.participantesIn.length}} | {{evento.participantes}}
                         </ion-col>
                         <ion-col>
-                            <ion-icon name="add-circle" style="width: 30px; height: 30px;" (click)="presentAlert(i)" *ngIf="evento.participantesIn.length != evento.participantes"></ion-icon>
+                            <ion-icon name="add-circle" style="width: 30px; height: 30px; margin-top: -7px;" class="unirse" (click)="presentAlert(i)" *ngIf="evento.participantesIn.length != evento.participantes"></ion-icon>
                         </ion-col>
                     </ion-row>
                 </ion-grid>
-            </ion-item>
-        </ion-list>
+            </mat-list-item>
+        </mat-list>
     </div>
 </ion-content>

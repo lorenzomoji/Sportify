@@ -8,9 +8,12 @@
 
 <ion-content color="dark">
     <ion-searchbar color="light" (ionChange)="buscar($event)"></ion-searchbar>
-    <ion-list>
-        <ion-item *ngFor="let deporte of deportes | filtro: textoBuscar" color="dark" detail>
-            <ion-label (click)="deporteSeleccionado(deporte)">{{deporte.nombre}}</ion-label>
-        </ion-item>
-    </ion-list>
+    <mat-list>
+        <mat-list-item *ngFor="let deporte of deportes | filtro: textoBuscar" color="dark" detail (click)="deporteSeleccionado(deporte)">
+            <mat-divider></mat-divider>
+                <ion-label>{{deporte.nombre}}</ion-label>
+                <ion-icon name="chevron-forward-outline" slot="end" color="light"></ion-icon>
+                <mat-divider></mat-divider>
+            </mat-list-item>
+    </mat-list>
 </ion-content>

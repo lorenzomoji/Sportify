@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { PerfilPage } from './perfil.page';
 
 import { PerfilPageRoutingModule } from './perfil-routing.module'
+import { MatListModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { PerfilPageRoutingModule } from './perfil-routing.module'
     FormsModule,
     RouterModule.forChild([{ path: '', component: PerfilPage }]),
     PerfilPageRoutingModule,
+    MatListModule
   ],
   declarations: [PerfilPage]
 })

@@ -6,13 +6,15 @@ import { FormsModule } from '@angular/forms';
 
 import { ListaEventosRoutingModule } from './lista-eventos-routing.module';
 import { ListaEventosPage } from './lista-eventos.page';
+import { MatListModule } from '@angular/material';
 
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
-    ListaEventosRoutingModule
+    ListaEventosRoutingModule,
+    MatListModule
   ],
   declarations: [ListaEventosPage]
 })

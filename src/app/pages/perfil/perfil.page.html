@@ -7,23 +7,23 @@
 </ion-header>
 
 <ion-content [fullscreen]="true"  color="dark" *ngIf="user">
-  <ion-header collapse="condense">
     <ion-toolbar color="dark">
       <ion-title size="large">{{user.nombre}} {{user.apellido}}</ion-title>
     </ion-toolbar>
-    <ion-list>
-      <ion-item color="dark">
+    <mat-list>
+      <mat-list-item color="dark">
         <ion-label>Fecha de nacimiento: {{user.fechaNacimiento}}</ion-label>
-      </ion-item>
+      </mat-list-item>
       <ion-item color="dark">
         <ion-label>Lugar de residiencia: {{user.lugar}}</ion-label>
       </ion-item>
       <ion-item color="dark">
         <ion-label>Deporte favorito: {{user.deporteFav}}</ion-label>
       </ion-item>
-    </ion-list>
+    </mat-list>
     <br>
-    <h2>Últimos eventos actudidos</h2>
+    <h2 *ngIf="eventosPasados.length > 0">Últimos eventos acudidos</h2>
+    <h2 *ngIf="!(eventosPasados.length > 0)">No has acudido a ningún evento</h2>
     <ion-list *ngIf="eventosPasados.length > 0">
       <ion-item color="dark" *ngFor="let evento of eventosPasados">
         <ion-avatar slot="start">
@@ -36,7 +36,7 @@
         </ion-label>
       </ion-item>
     </ion-list>
-    <h2 *ngIf="eventosPasados.length < 0">No has acudido a ningún evento</h2>
-  </ion-header>
-
+</ion-content>
+<ion-content color="dark">
+  <ion-spinner name="crescent" *ngIf="!user"></ion-spinner>
 </ion-content>
