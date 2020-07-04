@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginPage implements OnInit {
 
   constructor(
     private route: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private toastController: ToastController
   ) { }
 
   ngOnInit() {
@@ -30,9 +32,19 @@ export class LoginPage implements OnInit {
     this.user.password = login.password;
     const user = await this.authService.onLogin(this.user);
     if (user) {
-      console.log('Successfully logged in!');
       this.route.navigateByUrl('/');
+    } else {
+      this.presentToast();
     }
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Email o contraseña erróneos',
+      duration: 2000,
+      color: 'danger'
+    });
+    toast.present();
   }
 
 }

@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EventosService } from 'src/app/services/eventos.service';
-import { element } from 'protractor';
-import { Evento } from 'src/app/models/evento.model';
 import { Deporte } from 'src/app/models/deportes.model';
-import { AlertController } from '@ionic/angular';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { AlertController, ToastController } from '@ionic/angular';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
@@ -26,7 +23,8 @@ export class BuscarEventoPage implements OnInit {
     private eventoService: EventosService,
     private userService: UsuariosService,
     private fireAuth: AuthService,
-    private alert: AlertController
+    private alert: AlertController,
+    private toastController: ToastController
   ) { }
 
   ngOnInit() {
@@ -56,30 +54,34 @@ export class BuscarEventoPage implements OnInit {
   }
 
   async presentAlert(index) {
-    let alert = this.alert.create({
-      header: '¿Quieres unirte al evento?',
-      buttons: [{
-          text: 'Unirme',
-          role: 'unirme',
-          handler: (result) => {
-            this.eventos[index].participantesIn.push(sessionStorage.getItem('uid'));
-            if (this.usuario.eventos === undefined) {
-              this.usuario.eventos = [];
+    if (!this.eventos[index].participantesIn.includes(sessionStorage.getItem('uid'))) {
+      let alert = this.alert.create({
+        header: '¿Quieres unirte al evento?',
+        buttons: [{
+            text: 'Unirme',
+            role: 'unirme',
+            handler: (result) => {
+              this.eventos[index].participantesIn.push(sessionStorage.getItem('uid'));
+              if (this.usuario.eventos === undefined) {
+                this.usuario.eventos = [];
+              }
+              this.usuario.eventos.push(this.eventos[index]);
+              this.eventoService.updateEvent(this.eventos[index]);
+              this.userService.updateUser(this.usuario);
             }
-            this.usuario.eventos.push(this.eventos[index]);
-            this.eventoService.updateEvent(this.eventos[index]);
-            this.userService.updateUser(this.usuario);
-          }
-        },
-        {
-          text: 'Cancelar',
-          role: 'cancelar',
-          handler: (result) => {
-          }
-        }]
-    });
-    (await alert).present();
-    let result = (await alert).onDidDismiss();
+          },
+          {
+            text: 'Cancelar',
+            role: 'cancelar',
+            handler: (result) => {
+            }
+          }]
+      });
+      (await alert).present();
+      let result = (await alert).onDidDismiss();
+    }  else {
+      this.presentToast();
+    }
   }
 
   ordenarEventos(orden) {
@@ -103,6 +105,15 @@ export class BuscarEventoPage implements OnInit {
           return a.nivel.id - b.nivel.id; 
         })
     }
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Ya te has unido a este evento',
+      duration: 2000,
+      color: 'tertiary'
+    });
+    toast.present();
   }
 
 }

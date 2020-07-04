@@ -17,6 +17,7 @@ export class TabsPage {
   logout() {
     this.authService.onLogout();
     this.router.navigateByUrl('/login');
+    sessionStorage.clear();
   }
 
 }

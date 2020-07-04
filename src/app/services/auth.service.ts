@@ -21,7 +21,11 @@ export class AuthService {
   async onLogin(user: User) {
     this.getUid();
     try {
-      this.angularFireAuth.authState.subscribe(element => JSON.stringify(sessionStorage.setItem('email', element.email)))
+      this.angularFireAuth.authState.subscribe(element => {
+        if (element) {
+          JSON.stringify(sessionStorage.setItem('email', element.email))
+        }
+      })
       return await this.angularFireAuth.signInWithEmailAndPassword(user.email, user.password);
     } catch (error) {
       console.log('Error en login user', error);
@@ -29,12 +33,15 @@ export class AuthService {
   }
 
   async onLogout() {
-    this.angularFireAuth.signOut();
+    this.angularFireAuth.signOut().then(function() {
+      console.log('Deslogueado correctamente')
+    }).catch(function(error) {
+      console.log('Error: ', error);
+    })
   }
 
   //Register
   async onRegister(user: User) {
-    console.log('User: ', user);
     try {
       return await this.angularFireAuth.createUserWithEmailAndPassword(user.email, user.password);
     } catch (error) {
@@ -44,7 +51,9 @@ export class AuthService {
 
   public getUid() {
     console.log('FireAuth: ', this.angularFireAuth.authState.subscribe(result => {
-      sessionStorage.setItem('uid', result.uid);
+      if (result) {
+        sessionStorage.setItem('uid', result.uid);
+      }
     }));
   }
 

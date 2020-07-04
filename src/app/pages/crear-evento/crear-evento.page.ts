@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { PickerController } from '@ionic/angular';
+import { PickerController, ToastController } from '@ionic/angular';
 import { PickerOptions } from "@ionic/core";
 import { EventosService } from '../../services/eventos.service';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
+import { DateAdapter } from '@angular/material';
 
 @Component({
   selector: 'app-crear-evento',
@@ -28,20 +29,30 @@ export class CrearEventoPage implements OnInit {
     participantesIn: new FormControl([]),
     id: new FormControl('')
   });
+  dateFilter = (d: Date) => {
+    let day;
+    let dia = moment(d).format('L').substr(6, 4) + moment(d).format('L').substr(3, 2) +moment(d).format('L').substr(0, 2);
+    let diaActual = moment(new Date()).format('L').substr(6, 4) + moment(new Date()).format('L').substr(3, 2) + moment(new Date()).format('L').substr(0, 2);
+    if (Number(dia) > Number(diaActual)) {
+      day = (d || new Date()).getDay()
+    }
+    return day || day === 0;
+  }
 
   constructor(
     private formBuilder: FormBuilder,
     private pickerController: PickerController,
     private eventoService: EventosService,
-    private router: Router
+    private router: Router,
+    private toastController: ToastController
   ) {
     this.eventoForm.setValue({
       id: '',
       deporte: '',
       fecha: ['', Validators.required],
-      hora: [''],
+      hora: ['', Validators.required],
       lugar: [''],
-      participantes: [''],
+      participantes: ['', Validators.required],
       participantesIn: [],
       nivel: [null, Validators.required]
     });
@@ -95,6 +106,9 @@ export class CrearEventoPage implements OnInit {
       participantesIn: [],
       nivel: this.nivel
     };
+    if (!form.fecha || !form.hora || !form.lugar || !form.participantes) {
+      this.presentToast();
+    }
     this.eventoService.createEvent(data).then(() => {
       console.log('Evento creado exitosamente');
       this.eventoForm.setValue({
@@ -111,6 +125,15 @@ export class CrearEventoPage implements OnInit {
       console.log('Error: ', error);
     });
     this.router.navigateByUrl('/tabs/deportes');
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Complete todos los campos',
+      duration: 2000,
+      color: 'danger'
+    });
+    toast.present();
   }
 
 }

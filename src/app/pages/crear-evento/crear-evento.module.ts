@@ -19,7 +19,7 @@ import { MAT_DATE_LOCALE } from '@angular/material';
   ],
   declarations: [CrearEventoPage],
   providers: [
-    {provide: MAT_DATE_LOCALE, useValue: 'es'}
+    {provide: MAT_DATE_LOCALE, useValue: 'es-ES'}
   ]
 })
 export class CrearEventoPageModule {}

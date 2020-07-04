@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { TodosDeportes, Deporte } from 'src/app/models/deportes.model';
+import { element } from 'protractor';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -14,6 +16,8 @@ import { TodosDeportes, Deporte } from 'src/app/models/deportes.model';
 export class RegisterPage implements OnInit {
 
   deportes: TodosDeportes;
+  emails: string[] = [];
+  emailUsado: boolean;
 
   userForm = new FormGroup({
     nombre: new FormControl('', Validators.required),
@@ -28,7 +32,8 @@ export class RegisterPage implements OnInit {
   constructor(
     private route: Router,
     private authService: AuthService,
-    private userService: UsuariosService
+    private userService: UsuariosService,
+    private toastController: ToastController
   ) {
     this.userForm.setValue({
       nombre: '',
@@ -44,6 +49,11 @@ export class RegisterPage implements OnInit {
   ngOnInit() {
     moment.locale('es');
     this.deportes = new TodosDeportes();
+    this.userService.getUser().subscribe(element => {
+      element.forEach(usuario => {
+        this.emails.push(usuario.email);
+      })
+    })
   }
 
   async onRegister(userForm: any) {
@@ -52,8 +62,18 @@ export class RegisterPage implements OnInit {
     if (user) {
       console.log("Successfully created user!")
       this.route.navigateByUrl('/');
+      this.userService.createUser(userForm);
+    } else {
+      this.presentToast();
     }
-    this.userService.createUser(userForm);
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Este email ya está en uso',
+      duration: 2000,
+    });
+    toast.present();
   }
 
 }

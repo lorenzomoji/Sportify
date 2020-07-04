@@ -15,7 +15,7 @@
             <ion-item color="#4F5955">
             <input type="hidden" formControlName="id">
             
-            <input [matDatepicker]="picker" formControlName="fecha" placeholder="Fecha">
+            <input [matDatepicker]="picker" [matDatepickerFilter]="dateFilter" formControlName="fecha" placeholder="Fecha">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </ion-item>
