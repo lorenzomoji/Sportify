@@ -1,6 +1,8 @@
 <ion-content color="dark" padding>
-    <img src="../../../assets/baseline_directions_run_black_48dp.png" class="icono">
-    <h6 class="sportify">Sportify</h6>
+    <div class="titulo">
+        <img src="../../../assets/baseline_directions_run_black_48dp.png" class="icono">
+        <h6 class="sportify">Sportify</h6>
+    </div>
     <form [formGroup]="userForm" (ngSubmit)="onLogin(userForm.value)">
         <div class="inputs">
             <input class="inputEmail" type="text" formControlName="email" placeholder="Email">
