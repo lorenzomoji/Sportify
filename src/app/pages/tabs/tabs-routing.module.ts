@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
-import { DeportesComponent } from '../deportes/deportes.page';
 
 const routes: Routes = [
   {
@@ -41,7 +40,16 @@ const routes: Routes = [
       },
       {
         path: 'lista-eventos',
-        loadChildren: () => import('../lista-eventos/lista-eventos.module').then(m => m.ListaEventosPageModule)
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('../lista-eventos/lista-eventos.module').then(m => m.ListaEventosPageModule)
+          },
+          {
+            path: 'chat-evento',
+            loadChildren: () => import('../chat-evento/chat-evento.module').then(m => m.ChatEventoPageModule)
+          }
+        ]
       },
       {
         path: 'perfil',

@@ -13,7 +13,7 @@
     </ion-toolbar>
   </ion-header>
   <mat-list>
-    <mat-list-item color="dark" *ngFor="let evento of eventos">
+    <mat-list-item color="dark" *ngFor="let evento of eventos" (click)="goChat()">
       <ion-avatar slot="start" mat-list-avatar>
         <ion-icon name={{nombrarIcono(evento.deporte.nombre)}}></ion-icon>
       </ion-avatar>

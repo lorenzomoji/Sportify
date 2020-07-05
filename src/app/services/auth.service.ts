@@ -28,7 +28,6 @@ export class AuthService {
       })
       return await this.angularFireAuth.signInWithEmailAndPassword(user.email, user.password);
     } catch (error) {
-      console.log('Error en login user', error);
     }
   }
 

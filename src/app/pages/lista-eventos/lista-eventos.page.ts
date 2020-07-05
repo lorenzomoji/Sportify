@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { User } from 'src/app/models/user.model';
 import { Evento } from 'src/app/models/evento.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista-eventos',
@@ -13,7 +14,8 @@ export class ListaEventosPage {
   eventos: Evento[] = [];
 
   constructor(
-    private userService: UsuariosService
+    private userService: UsuariosService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -68,6 +70,10 @@ export class ListaEventosPage {
       case 'Escalada':
         return "analytics-outline";
     }
+  }
+
+  goChat() {
+    this.router.navigateByUrl('/tabs/lista-eventos/chat-evento');
   }
 
 }

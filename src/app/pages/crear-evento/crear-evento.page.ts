@@ -107,10 +107,11 @@ export class CrearEventoPage implements OnInit {
       nivel: this.nivel
     };
     if (!form.fecha || !form.hora || !form.lugar || !form.participantes) {
-      this.presentToast();
+      this.presentToast('Complete todos los campos', 'danger');
     }
     this.eventoService.createEvent(data).then(() => {
       console.log('Evento creado exitosamente');
+      this.presentToast('Evento creado correctamente', 'success');
       this.eventoForm.setValue({
         deporte: '',
         fecha: '',
@@ -127,11 +128,11 @@ export class CrearEventoPage implements OnInit {
     this.router.navigateByUrl('/tabs/deportes');
   }
 
-  async presentToast() {
+  async presentToast(mensaje, tipoMensaje) {
     const toast = await this.toastController.create({
-      message: 'Complete todos los campos',
+      message: mensaje,
       duration: 2000,
-      color: 'danger'
+      color: tipoMensaje
     });
     toast.present();
   }

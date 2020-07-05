@@ -62,6 +62,7 @@ export class BuscarEventoPage implements OnInit {
             role: 'unirme',
             handler: (result) => {
               this.eventos[index].participantesIn.push(sessionStorage.getItem('uid'));
+              console.log(this.usuario);
               if (this.usuario.eventos === undefined) {
                 this.usuario.eventos = [];
               }

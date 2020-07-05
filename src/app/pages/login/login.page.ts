@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
+import { UsuariosService } from 'src/app/services/usuarios.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,8 @@ export class LoginPage implements OnInit {
   constructor(
     private route: Router,
     private authService: AuthService,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private userService: UsuariosService
   ) { }
 
   ngOnInit() {
@@ -36,6 +38,17 @@ export class LoginPage implements OnInit {
     } else {
       this.presentToast();
     }
+
+    this.userService.getUser().subscribe(
+      element => {
+        element.forEach(user => {
+          if (user.email.toLowerCase() === sessionStorage.getItem('email').toString().toLowerCase()) {
+            console.log('User: ', user);
+            sessionStorage.setItem('usuario', JSON.stringify(user));
+          }
+        })
+      }
+    );
   }
 
   async presentToast() {
