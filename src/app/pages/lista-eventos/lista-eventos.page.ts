@@ -25,7 +25,9 @@ export class ListaEventosPage {
           if (user.email === sessionStorage.getItem('email').toString()) {
             if (user.eventos) {
               user.eventos.forEach(evento => {
-                this.eventos.push(evento);
+                if (user.eventos.length > this.eventos.length) {
+                  this.eventos.push(evento);
+                }
               });
             }
           }

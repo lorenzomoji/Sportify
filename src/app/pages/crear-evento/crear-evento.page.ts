@@ -6,6 +6,10 @@ import { EventosService } from '../../services/eventos.service';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { DateAdapter } from '@angular/material';
+import { User } from 'src/app/models/user.model';
+import { Evento } from 'src/app/models/evento.model';
+import { Deporte } from 'src/app/models/deportes.model';
+import { UsuariosService } from 'src/app/services/usuarios.service';
 
 @Component({
   selector: 'app-crear-evento',
@@ -16,11 +20,12 @@ export class CrearEventoPage implements OnInit {
 
   niveles: any[] = [{id: 1, nivel: 'Casual'}, {id: 2, nivel: 'Intermedio'}, {id: 3, nivel: 'Experto'}];
   participantes: number;
-  deporte: string;
+  deporte: Deporte;
   eventos = [];
   nivel: any;
+  usuario: User;
   public eventoForm = new FormGroup({
-    deporte: new FormControl(''),
+    deporte: new FormControl(null, Validators.required),
     fecha: new FormControl('', Validators.required),
     hora: new FormControl('', Validators.required),
     lugar: new FormControl('', Validators.required),
@@ -44,11 +49,12 @@ export class CrearEventoPage implements OnInit {
     private pickerController: PickerController,
     private eventoService: EventosService,
     private router: Router,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private userService: UsuariosService
   ) {
     this.eventoForm.setValue({
       id: '',
-      deporte: '',
+      deporte: [null, Validators.required],
       fecha: ['', Validators.required],
       hora: ['', Validators.required],
       lugar: [''],
@@ -61,6 +67,7 @@ export class CrearEventoPage implements OnInit {
   ngOnInit() {
     moment.locale('es');
     this.deporte = JSON.parse(sessionStorage.getItem('deporte'));
+    this.usuario = JSON.parse(sessionStorage.getItem('usuario'));
   }
 
   async participantesPicker() {
@@ -96,8 +103,7 @@ export class CrearEventoPage implements OnInit {
   }
 
   crearEvento(form) {
-    console.log('Form: ', form);
-    let data = {
+    let data: Evento = {
       deporte: this.deporte,
       fecha: moment(form.fecha).format('L'),
       hora: form.hora,
@@ -106,11 +112,23 @@ export class CrearEventoPage implements OnInit {
       participantesIn: [sessionStorage.getItem('uid')],
       nivel: this.nivel
     };
-    if (!form.fecha || !form.hora || !form.lugar || !form.participantes) {
+    if (!form.fecha || !form.hora || !form.lugar || !form.participantes || typeof form.participantes === 'number') {
       this.presentToast('Complete todos los campos', 'danger');
     }
+    if (typeof form.participantes !== 'number') {
+      this.presentToast('Participantes tiene que ser un número', 'danger');
+      return
+    }
+    if (form.participantes > 14) {
+      this.presentToast('No pueden haber más de 14 participantes', 'danger');
+      return
+    }
     this.eventoService.createEvent(data).then(() => {
-      console.log('Evento creado exitosamente');
+      if (this.usuario.eventos === undefined) {
+        this.usuario.eventos = [];
+      }
+      this.usuario.eventos.push(data);
+      this.userService.updateUser(this.usuario);
       this.presentToast('Evento creado correctamente', 'success');
       this.eventoForm.setValue({
         deporte: '',

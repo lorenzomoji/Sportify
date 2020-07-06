@@ -2,7 +2,7 @@ import { Deporte } from './deportes.model';
 
 export class Evento {
 
-    public id: number;
+    public id?: number;
     public deporte: Deporte;
     public fecha: string;
     public hora: string;
@@ -10,5 +10,5 @@ export class Evento {
     public participantes: number;
     public nivel: any;
     public participantesIn: string[];
-    public idUsuario: number[];
+    public idUsuario?: number[];
 }
