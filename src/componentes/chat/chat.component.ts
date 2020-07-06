@@ -17,8 +17,8 @@ export class ChatComponent {
   ) {
     this.chatService.cargarMensajes().subscribe();
     this.usuario = JSON.parse(sessionStorage.getItem('usuario'));
-   }
-
+  }
+  
   enviarMensaje() {
     if(this.mensaje.length === 0) {
       return;

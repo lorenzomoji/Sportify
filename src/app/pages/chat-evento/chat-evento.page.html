@@ -1,12 +1,21 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>chat-evento</ion-title>
+<ion-header color="dark">
+  <ion-toolbar color="dark">
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title class="lugar">{{evento.lugar}}</ion-title>
+      <ion-chip color="primary" slot="end">
+        <h4>{{evento.participantesIn.length}}</h4>  
+        <ion-icon name="person"></ion-icon>
+      </ion-chip>
+      <ion-title class="fecha">{{evento.fecha}} {{evento.hora}}</ion-title>
+      <br>
+      <br>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content color="dark">
   <div class="container main-container">
-    <h1>Firechat</h1>
     <div class="chat-window">
       <app-chat></app-chat>
     </div>

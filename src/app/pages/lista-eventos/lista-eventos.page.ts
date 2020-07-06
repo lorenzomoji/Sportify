@@ -72,7 +72,8 @@ export class ListaEventosPage {
     }
   }
 
-  goChat() {
+  goChat(evento) {
+    sessionStorage.setItem('evento', JSON.stringify(evento));
     this.router.navigateByUrl('/tabs/lista-eventos/chat-evento');
   }
 

@@ -103,7 +103,7 @@ export class CrearEventoPage implements OnInit {
       hora: form.hora,
       lugar: form.lugar,
       participantes: form.participantes,
-      participantesIn: [],
+      participantesIn: [sessionStorage.getItem('uid')],
       nivel: this.nivel
     };
     if (!form.fecha || !form.hora || !form.lugar || !form.participantes) {
