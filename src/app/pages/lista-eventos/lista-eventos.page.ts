@@ -3,6 +3,7 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
 import { User } from 'src/app/models/user.model';
 import { Evento } from 'src/app/models/evento.model';
 import { Router } from '@angular/router';
+import { type } from 'os';
 
 @Component({
   selector: 'app-lista-eventos',
@@ -26,15 +27,17 @@ export class ListaEventosPage {
             if (user.eventos) {
               user.eventos.forEach(evento => {
                 if (user.eventos.length > this.eventos.length) {
-                  this.eventos.push(evento);
+                  if (this.comprobarSiExiste(evento) === false) {
+                    this.eventos.push(evento);
+                  }
                 }
               });
             }
           }
         })
+        console.log('Eventos: ', this.eventos);
       }
     );
-    console.log('Eventos: ', this.eventos);
   }
 
   nombrarIcono(deporte) {
@@ -77,6 +80,16 @@ export class ListaEventosPage {
   goChat(evento) {
     sessionStorage.setItem('evento', JSON.stringify(evento));
     this.router.navigateByUrl('/tabs/lista-eventos/chat-evento');
+  }
+
+  comprobarSiExiste(evento: Evento) {
+    for (let element of this.eventos) {
+      if (element.deporte.id === evento.deporte.id && element.fecha === evento.fecha && element.hora === evento.hora &&
+          element.lugar === evento.lugar && element.nivel.id === evento.nivel.id && element.participantes === evento.participantes) {
+        return true;
+      }
+    }
+    return false;
   }
 
 }
