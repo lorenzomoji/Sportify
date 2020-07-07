@@ -11,6 +11,7 @@ import { AuthService } from './auth.service';
 export class EventosService {
 
   private eventos: Observable<any[]>;
+  private evento: Evento;
   private firestoreCollection: AngularFirestoreCollection<any>;
 
   constructor(
@@ -33,8 +34,9 @@ export class EventosService {
     return this.eventos;
   }
 
-  public createEvent(data: {fecha: string, hora: string, lugar: string, nivel: number, participantes: number}) {
+  public createEvent(data: Evento) {
     console.log('EVENTO: ', data);
+    this.evento = data;
     return this.firestoreCollection.add(data);
   }
 
@@ -42,7 +44,8 @@ export class EventosService {
     return this.firestore.collection('eventos').doc(eventoId).snapshotChanges();
   }
 
-  public updateEvent(evento: any) {
+  public updateEvent(evento: Evento) {
+    console.log('Evento actualizado: ', evento)
     return this.firestoreCollection.doc(evento.id).update(evento);
   }
 

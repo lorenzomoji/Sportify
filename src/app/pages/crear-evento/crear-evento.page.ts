@@ -24,6 +24,8 @@ export class CrearEventoPage implements OnInit {
   eventos = [];
   nivel: any;
   usuario: User;
+  documentId: null;
+
   public eventoForm = new FormGroup({
     deporte: new FormControl(null, Validators.required),
     fecha: new FormControl('', Validators.required),
@@ -103,16 +105,16 @@ export class CrearEventoPage implements OnInit {
   }
 
   crearEvento(form) {
-    let data: Evento = {
+    let data = {
       deporte: this.deporte,
       fecha: moment(form.fecha).format('L'),
       hora: form.hora,
       lugar: form.lugar,
       participantes: form.participantes,
       participantesIn: [sessionStorage.getItem('uid')],
-      nivel: this.nivel
+      nivel: this.nivel,
     };
-    if (!form.fecha || !form.hora || !form.lugar || !form.participantes || typeof form.participantes === 'number') {
+    if (!form.fecha || !form.hora || !form.lugar || !form.participantes) {
       this.presentToast('Complete todos los campos', 'danger');
     }
     if (typeof form.participantes !== 'number') {
@@ -123,12 +125,12 @@ export class CrearEventoPage implements OnInit {
       this.presentToast('No pueden haber más de 14 participantes', 'danger');
       return
     }
+    if (this.usuario.eventos === undefined) {
+      this.usuario.eventos = [];
+    }
+    this.usuario.eventos.push(data);
+    this.userService.updateUser(this.usuario);
     this.eventoService.createEvent(data).then(() => {
-      if (this.usuario.eventos === undefined) {
-        this.usuario.eventos = [];
-      }
-      this.usuario.eventos.push(data);
-      this.userService.updateUser(this.usuario);
       this.presentToast('Evento creado correctamente', 'success');
       this.eventoForm.setValue({
         deporte: '',

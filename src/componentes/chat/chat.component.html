@@ -1,13 +1,15 @@
 <hr>
 <div class="app-mensajes" id="app-mensajes">
   <div  *ngFor="let chat of chatService.chats">
-    <div class="text-right" *ngIf="chat.nombre === usuario.nombre">
-      <span class="badge badge-primary" >Yo</span>
-      <p *ngIf="chat.nombre === usuario.nombre">{{chat.mensaje}}</p>
-    </div>
-    <div class="text-left" *ngIf="chat.nombre !== usuario.nombre">
-      <span class="badge badge-primary">{{chat.nombre}}</span>
-      <p>{{chat.mensaje}}</p>
+    <div *ngIf="chat.eventoId === evento.id">
+      <div class="text-right" *ngIf="chat.nombre === usuario.nombre">
+        <span class="badge badge-primary" >Yo</span>
+        <p *ngIf="chat.nombre === usuario.nombre">{{chat.mensaje}}</p>
+      </div>
+      <div class="text-left" *ngIf="chat.nombre !== usuario.nombre">
+        <span class="badge badge-primary">{{chat.nombre}}</span>
+        <p>{{chat.mensaje}}</p>
+      </div>
     </div>
   </div>
 </div>

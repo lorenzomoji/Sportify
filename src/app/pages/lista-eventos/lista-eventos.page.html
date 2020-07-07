@@ -1,17 +1,12 @@
-<ion-header [translucent]="true" color="dark">
+ <ion-header [translucent]="true" color="dark">
   <ion-toolbar color="dark">
     <ion-title>
-      Lista de Eventos
+      LISTA DE EVENTOS
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" color="dark" *ngIf="eventos">
-  <ion-header collapse="condense">
-    <ion-toolbar color="dark">
-      <ion-title size="large">Lista Eventos</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content color="dark" *ngIf="eventos">
   <mat-list>
     <mat-list-item color="dark" *ngFor="let evento of eventos" (click)="goChat(evento)">
       <ion-avatar slot="start" mat-list-avatar>
@@ -19,9 +14,8 @@
       </ion-avatar>
       <ion-label mat-line>
         <h1 mat-line>{{evento.deporte.nombre}}</h1>
-        <h3 mat-line>{{evento.fecha}} {{evento.hora}}</h3>
-        <h3 mat-line>{{evento.lugar}}</h3>
       </ion-label>
     </mat-list-item>
   </mat-list>
 </ion-content>
+

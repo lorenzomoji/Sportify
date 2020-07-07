@@ -4,17 +4,25 @@
         <ion-back-button></ion-back-button>
       </ion-buttons>
       <ion-title class="lugar">{{evento.lugar}}</ion-title>
+      <ion-title class="fecha">{{evento.fecha}} {{evento.hora}}</ion-title>
       <ion-chip color="primary" slot="end">
         <h4>{{evento.participantesIn.length}}</h4>  
         <ion-icon name="person"></ion-icon>
       </ion-chip>
-      <ion-title class="fecha">{{evento.fecha}} {{evento.hora}}</ion-title>
       <br>
       <br>
   </ion-toolbar>
 </ion-header>
 
 <ion-content color="dark">
+  <!-- <br>
+  <ion-header>
+    <ion-title style="width: 100%;"> Fecha evento</ion-title>
+  </ion-header>
+  <br>
+  <ion-header>
+    <ion-title style="width: 100%;"> {{evento.fecha}} | {{evento.hora}}</ion-title>
+  </ion-header> -->
   <div class="container main-container">
     <div class="chat-window">
       <app-chat></app-chat>

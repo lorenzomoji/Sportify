@@ -33,7 +33,7 @@ export class BuscarEventoPage implements OnInit {
     this.userService.getUser().subscribe(
       element => {
         element.forEach(user => {
-          if (user.email === sessionStorage.getItem('email').toString()) {
+          if (user.email.toLowerCase() === sessionStorage.getItem('email').toString().toLowerCase()) {
             this.usuario = user;
           }
         })
@@ -44,6 +44,7 @@ export class BuscarEventoPage implements OnInit {
         element.forEach(evento => {
           if (this.deporte.nombre === evento.deporte.nombre) {
             if (this.cantidadEventos === undefined) {
+              console.log(evento);
               this.eventos.push(evento);
             }
           }
@@ -62,11 +63,11 @@ export class BuscarEventoPage implements OnInit {
             role: 'unirme',
             handler: (result) => {
               this.eventos[index].participantesIn.push(sessionStorage.getItem('uid'));
-              console.log(this.usuario);
               if (this.usuario.eventos === undefined) {
                 this.usuario.eventos = [];
               }
               this.usuario.eventos.push(this.eventos[index]);
+              console.log(this.eventos[index]);
               this.eventoService.updateEvent(this.eventos[index]);
               this.userService.updateUser(this.usuario);
             }

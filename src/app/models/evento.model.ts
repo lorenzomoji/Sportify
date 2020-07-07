@@ -1,8 +1,9 @@
 import { Deporte } from './deportes.model';
+import { Mensaje } from './mensaje.model';
 
 export class Evento {
 
-    public id?: number;
+    public id?: string;
     public deporte: Deporte;
     public fecha: string;
     public hora: string;
@@ -11,4 +12,5 @@ export class Evento {
     public nivel: any;
     public participantesIn: string[];
     public idUsuario?: number[];
+    public mensaje?: Mensaje[];
 }

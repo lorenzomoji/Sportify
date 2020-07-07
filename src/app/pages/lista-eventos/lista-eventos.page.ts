@@ -22,7 +22,7 @@ export class ListaEventosPage {
     this.userService.getUser().subscribe(
       element => {
         element.forEach(user => {
-          if (user.email === sessionStorage.getItem('email').toString()) {
+          if (user.email.toLowerCase() === sessionStorage.getItem('email').toString().toLowerCase()) {
             if (user.eventos) {
               user.eventos.forEach(evento => {
                 if (user.eventos.length > this.eventos.length) {

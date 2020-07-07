@@ -6,9 +6,9 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true"  color="dark" *ngIf="user">
+<ion-content color="dark" *ngIf="user">
     <ion-toolbar color="dark">
-      <ion-title size="large">{{user.nombre}} {{user.apellido}}</ion-title>
+      <ion-title size="large" class="nombre">{{user.nombre}} {{user.apellido}}</ion-title>
     </ion-toolbar>
     <mat-list>
       <mat-list-item color="dark">

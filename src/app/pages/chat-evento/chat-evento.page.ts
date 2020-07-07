@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Evento } from 'src/app/models/evento.model';
+import { EventosService } from 'src/app/services/eventos.service';
 
 @Component({
   selector: 'app-chat-evento',
@@ -10,11 +11,12 @@ export class ChatEventoPage implements OnInit {
 
   evento: Evento;
 
-  constructor() { }
+  constructor(
+    private eventoService: EventosService
+  ) { }
 
   ngOnInit() {
     this.evento = JSON.parse(sessionStorage.getItem('evento'));
-    console.log('Evento: ', this.evento);
   }
 
   ngOnDestroy(): void {

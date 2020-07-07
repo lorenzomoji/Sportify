@@ -40,10 +40,4 @@ export class UsuariosService {
   public getUser() {
     return this.usuarios;
   }
-
-  public getUserById() {
-    let id = '5Dr460iGgpIiTyWRH69R';
-    return this.firestore.collection('usuarios').doc(id).get();
-  }
-
 }
