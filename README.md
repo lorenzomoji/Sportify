@@ -54,7 +54,7 @@ Tiempo Estimado: 100 horas.
 
 ## 9. Presupuesto de la App para el comprador, coste del software.
 
-
+![Presupuesto Sportify](https://user-images.githubusercontent.com/44237471/86914891-57d6d500-c121-11ea-87cb-ea69b8214264.PNG)
 
 ## 10. Conclusiones.
 
