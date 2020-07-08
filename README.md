@@ -32,3 +32,11 @@ Se ha utilizado un modelo de dos capas gracias a FIREBASE.
 ![ArquitecturaSportify](https://user-images.githubusercontent.com/44237471/86914438-a637a400-c120-11ea-951d-c992d4dc8b8d.PNG)
 
 Diagrama de componentes
+
+![Diagrama Sportify](https://user-images.githubusercontent.com/44237471/86914588-dbdc8d00-c120-11ea-964c-647044e4dc40.PNG)
+
+## 6. Metodologías de Desarrollo.
+
+La metodoflogía de trabajo en GIT, ha sido bastante simple, ya que al ser un único usuario quien la desarrollaba, no ho hecho más ramas. Y durante el proyecto se realizabas varios commits después de completar un cumponente, una página o una historia de usuario.
+
+## 7. Diagrama de GANTT
