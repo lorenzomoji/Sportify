@@ -7,6 +7,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { TodosDeportes, Deporte } from 'src/app/models/deportes.model';
 import { element } from 'protractor';
 import { ToastController } from '@ionic/angular';
+import provincias from '../../../assets/espana-municipios.json';
 
 @Component({
   selector: 'app-register',
@@ -18,6 +19,7 @@ export class RegisterPage implements OnInit {
   deportes: TodosDeportes;
   emails: string[] = [];
   emailUsado: boolean;
+  provincias: any;
 
   userForm = new FormGroup({
     nombre: new FormControl('', Validators.required),
@@ -47,6 +49,8 @@ export class RegisterPage implements OnInit {
   }
 
   ngOnInit() {
+    this.provincias = provincias;
+    console.log(this.provincias);
     moment.locale('es');
     this.deportes = new TodosDeportes();
     this.userService.getUser().subscribe(element => {

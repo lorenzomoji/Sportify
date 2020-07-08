@@ -1,12 +1,15 @@
 <ion-content color="dark" padding>
     <div class="titulo">
-        <img src="../../../assets/1.0.png" class="icono">
+        <img src="../../../assets/2.0.png" class="icono">
     </div>
     <form [formGroup]="userForm" (ngSubmit)="onRegister(userForm.value)">
         <div class="inputs">
             <input type="text" formControlName="nombre" placeholder="Nombre" class="input">
             <input type="text" formControlName="apellido" placeholder="Apellido" class="input">
-            <input type="text" formControlName="lugar" placeholder="Lugar de residencia" class="input">
+            <!-- <input type="text" formControlName="lugar" placeholder="Lugar de residencia" class="input"> -->
+            <ion-select placeholder="Lugar de residencia" formControlName="lugar">
+                <ion-select-option value={{provincia.nm}} *ngFor="let provincia of provincias">{{provincia.nm}}</ion-select-option>
+            </ion-select>
             <ion-datetime formControlName="fechaNacimiento" displayFormat="DD MM YYYY" min="1960-01-01" placeholder="Fecha de nacimiento"></ion-datetime>
             <ion-select placeholder="Deporte favorito" formControlName="deporteFav">
                 <ion-select-option value={{deporte.nombre}} *ngFor="let deporte of deportes.deportes">{{deporte.nombre}}</ion-select-option>

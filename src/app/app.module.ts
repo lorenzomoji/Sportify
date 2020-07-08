@@ -24,7 +24,9 @@ import { PipesModule } from './pipes/pipes.module';
   entryComponents: [],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(),
+    IonicModule.forRoot({
+      scrollAssist: false
+    }),
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
