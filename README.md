@@ -47,3 +47,32 @@ La metodoflogía de trabajo en GIT, ha sido bastante simple, ya que al ser un ú
 
 Tiempo Estimado: 100 horas.
 
+![Clockify Sportify 1](https://user-images.githubusercontent.com/44237471/86914765-2100bf00-c121-11ea-8207-09b75240ca4f.PNG)
+![Clockify Sportify 2](https://user-images.githubusercontent.com/44237471/86914768-2231ec00-c121-11ea-97fa-62fb82903522.PNG)
+![Clockify Sportify 3](https://user-images.githubusercontent.com/44237471/86914770-23631900-c121-11ea-8c85-6ddb69274d89.PNG)
+![Clockify Sportify 4](https://user-images.githubusercontent.com/44237471/86914772-252cdc80-c121-11ea-9778-01f0cb7f59df.PNG)
+
+## 9. Presupuesto de la App para el comprador, coste del software.
+
+
+
+## 10. Conclusiones.
+
+Posibles mejoras
+- Autologin tras registrarse.
+
+- Poner un mapa para localizar el lugar
+
+- Mejorar en general estéticamente
+
+- Utilizar el patrón redux, para guardar variables entre componentes.
+
+- Editar el perfil
+
+- Buscar usuarios y agregarlos para compartir el perfil
+
+Principales dificultades:
+
+- Al no conocer Firebase, a la hora de hacer diversas operaciones, no acaba de saber cómo hacerlas.
+- Como tengo poca experiencia maquetando, me ha llevado bastante tiempo conseguir que todo quede como quería.
+- La implementación de algunas librerías.
