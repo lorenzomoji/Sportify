@@ -40,3 +40,10 @@ Diagrama de componentes
 La metodoflogía de trabajo en GIT, ha sido bastante simple, ya que al ser un único usuario quien la desarrollaba, no ho hecho más ramas. Y durante el proyecto se realizabas varios commits después de completar un cumponente, una página o una historia de usuario.
 
 ## 7. Diagrama de GANTT
+
+![Diagrama Gantt Sportify](https://user-images.githubusercontent.com/44237471/86914684-fe6ea600-c120-11ea-9b2c-7bc51fc61cc7.PNG)
+
+## 8. Tiempo invertido en el desarrollo
+
+Tiempo Estimado: 100 horas.
+
